@@ -3,9 +3,7 @@ import { LogoText } from '../../atoms/titleText/LogoText.js';
 import { ArrowScrollDown } from '../../atoms/arrow-scroll-down/ArrowScrollDown.js';
 import { LogoBigText } from '../../atoms/titleText/LogoBigText.js';
 
-export const MainText = () => {
-  
-  const LogoTextContainer = styled.div`
+const LogoTextContainer = styled.div`
   position: absolute;
   width: 100%;
   top: 0;
@@ -17,11 +15,10 @@ export const MainText = () => {
   pointer-events: none;
 `
 
-  return (
+export const MainText = () => (
   <LogoTextContainer>
     <LogoText />
     <LogoBigText />
     <ArrowScrollDown />
   </LogoTextContainer>
-  )
-}
+);

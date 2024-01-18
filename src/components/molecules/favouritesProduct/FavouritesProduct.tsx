@@ -1,24 +1,35 @@
-import { favouritesPageState } from '../../../store/selector.js';
 import { ProductCard } from '../../molecules/productCard/ProductCard.js';
 import { styled } from "styled-components";
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { favourites } from '../../../store/atoms.js';
 
+const FavContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 15px;
+width: 100%;
+`
 
 export const FavouritesProduct = () => {
-  const FavContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-`
-  const dataInFavourites = useRecoilValue(favouritesPageState);
+	const [data, setData] = useRecoilState(favourites);
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem('rockets');
+
+    if (storedItems) {
+      const items = JSON.parse(storedItems);
+			setData(items);
+    }
+
+	}, []);
 
   return (
     <FavContainer>
-			{dataInFavourites && (
-				dataInFavourites.map((data) => (
+			{data && (
+				data.map((data) => (
 					<ProductCard item={data} loader={false} />
 				))
 			)}

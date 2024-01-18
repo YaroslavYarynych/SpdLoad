@@ -3,9 +3,7 @@ import { HeaderNavItem } from "../../../utils/types.js";
 import { NavLink } from "react-router-dom";
 import { styled } from "styled-components"
 
-
-export const NavigationBar = () => {
-  const ListStyle = styled.ul`
+const ListStyle = styled.ul`
 	display: flex;
 	gap: 32px;
 	font-size: 16px;
@@ -13,12 +11,12 @@ export const NavigationBar = () => {
 	line-height: 20px;
 	list-style-type: none;
 	text-transform: uppercase;
-	`;
-	const ListItemStyle = styled.li`
+`;
+const ListItemStyle = styled.li`
 	cursor: pointer;
-	`
+`
 
-	const StyledLink = styled(NavLink)`
+const StyledLink = styled(NavLink)`
 	text-decoration: none;
 	color: #fff;
 
@@ -27,17 +25,17 @@ export const NavigationBar = () => {
 	}
 	&.active {
 	text-underline-offset: 4px;
-    text-decoration: underline;
+		text-decoration: underline;
 	z-index: 10000;
-  }
+}
 
-	
+
 
 `;
 
-  return (
-    <nav>
-    <ListStyle>
+export const NavigationBar = () => (
+  <nav>
+	  <ListStyle>
       {Object.values(HeaderNavItem).map(item => (
         <ListItemStyle>
           <StyledLink
@@ -46,5 +44,4 @@ export const NavigationBar = () => {
       ))}
     </ListStyle>
   </nav>
-  )
-}
+);

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { register } from "swiper/element/bundle";
 import { ProductCard } from "../productCard/ProductCard.js";
 import { styled } from "styled-components";
@@ -11,48 +10,28 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./ProductSlider.scss";
+import { clientApi } from "../../../api/api.js";
 
 register();
+
+const HeaderProductSlider = styled.h1`
+font-size: 20px;
+font-weight: 800;
+line-height: 38px;
+text-transform: uppercase; 
+@media (min-width: 678px) {
+  font-size: 32px;
+}
+`
 
 export const ProductSlider = () => {
   const [itemsFromServer, setItemsFromServer] = useRecoilState(dataFromServer);
   const [isLoader, setIsLoader] = useRecoilState(IsLoaded);
 
 	useEffect(() => {
-		const client = new ApolloClient({
-			uri: 'https://spacex-production.up.railway.app/',
-			cache: new InMemoryCache(),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		
-		});
-		
-		client.query({
-			query: gql`
-			query ExampleQuery {
-				rockets {
-					id,
-					name,
-					description
-				}
-			}
-		`,
-		})
-    .then(data => setItemsFromServer(data.data.rockets))
-    .finally(() => {setIsLoader(false)});
-	
+		clientApi(setItemsFromServer, setIsLoader)	
 	}, []);
 
-  const HeaderProductSlider = styled.h1`
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 38px;
-  text-transform: uppercase; 
-  @media (min-width: 678px) {
-    font-size: 32px;
-	}
-  `
   return (
     <div className="product-container">
       <div className="product-container-top">

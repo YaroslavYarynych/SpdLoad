@@ -5,11 +5,7 @@ import { NavigationBar } from "../../atoms/navigation/NavigationBar.js";
 import { Logo } from "../../atoms/logo/Logo.js";
 import './Header.scss';
 
-
-export const Header = () => {
-	const location = useLocation();
-
-	const HeaderStyle = styled.header`
+const HeaderStyle = styled.header`
 	position: fixed;
 	margin: 0;
 	padding: 0;
@@ -25,13 +21,17 @@ export const Header = () => {
 	align-items: center;
 	justify-content: space-around;
 	padding: 13px 0;
-	`;
+`;
 
-    return (
+
+export const Header = () => {
+	const location = useLocation();
+
+  return (
     <HeaderStyle>
 			<Logo />
 			<NavigationBar />
 			<SideBar location={location} />
     </HeaderStyle>
-    )
+  )
 }

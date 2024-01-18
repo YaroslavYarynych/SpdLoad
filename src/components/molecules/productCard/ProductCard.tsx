@@ -8,6 +8,7 @@ import deleteIcon from '../../../img/deleteIcon-1.png';
 
 import { useRecoilState } from "recoil";
 import { FavoritesProps, Rocket } from "../../../utils/types.js"
+import { useEffect } from "react"
 
 type Props = {
 	item: Rocket,
@@ -25,7 +26,14 @@ const rocketImages = {
 export const ProductCard: React.FC<Props> = ({ item, loader }) => {
 	const [data, setData] = useRecoilState(favourites);
 
-	const handleAdd = (item: Rocket) => setData((current) => [...current, item]);
+	const handleAdd = (item: Rocket) => {
+		setData((current) => [...current, item]);
+	};
+
+	useEffect(() => {
+		localStorage.setItem('rockets', JSON.stringify(data));
+	}, [data]);
+
 	const handleDelete = (itemId: string) => setData(data.filter((dataItem) => dataItem.id !== itemId));	
 
 	const isInFav =  (id: string) => data.find(d => d.id === id);

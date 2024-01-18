@@ -5,6 +5,7 @@ const Container = styled.div`
 	width: fit-content;
   margin: 0 auto;
 	display: flex;
+	pointer-events: auto;
   justify-content: center;
   align-items: center;
 	gap: 8px;
@@ -40,16 +41,13 @@ const LinkToBottom = styled.a`
 	display: block;
 	margin: 0;
 	padding: 0;
-	pointer-events: auto;
 `;
 
-export const ArrowScrollDown = () => {
-    return (
-      <Container>
-        <Paragraph>Explore tours</Paragraph>
-        <LinkToBottom>
-					<img src={arrow} alt="" onClick={() => {window.scrollTo({top: 1200, behavior: "smooth"})}} />
-				</LinkToBottom>	
-      </Container>
-    );
-}
+export const ArrowScrollDown = () => (
+  <Container onClick={() => {window.scrollTo({top: 1200, behavior: "smooth"})}}>
+    <Paragraph>Explore tours</Paragraph>
+      <LinkToBottom>
+				<img src={arrow} alt=""  />
+			</LinkToBottom>	
+  </Container>
+);
