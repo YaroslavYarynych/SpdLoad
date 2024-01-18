@@ -1,5 +1,6 @@
 {
   "name": "spd-test-task",
+  "homepage": "https://yaroslavyarynych.github.io/spdLoad",
   "private": true,
   "version": "0.0.0",
   "type": "module",
