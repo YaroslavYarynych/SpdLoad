@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Syne";
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
